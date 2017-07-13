@@ -11,12 +11,12 @@ import UIKit
 
 //MARK: - RemoveAdsViewControllerState
 fileprivate enum RemoveAdsViewControllerState {
-    case fetching
-    case notPurchased
-    case purchasing
-    case purchased
-    case restoring
-    case restored
+    case fetching // Getting the in-app purchase item's name/price to display
+    case notPurchased // The user has not purchased the IAP, or needs to restore their previous purchase
+    case purchasing // The purchase is in progress
+    case purchased // The purchase has completed successfully
+    case restoring // Restore purchases is in progress
+    case restored // A previous purchase has been restored successfully
     
     fileprivate var purchaseButtonTitle: String {
         switch self {
@@ -152,6 +152,7 @@ internal final class RemoveAdsViewController: UIViewController {
     internal override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        /// If the in-app purchase was previously purchased, immediately transition to the purchased state, otherwise fetch the in-app purchase product data.
         if IAPController.shared.removeAdsState.isPurchased {
             transition(to: .purchased, animated: false)
         } else {
@@ -167,11 +168,14 @@ internal final class RemoveAdsViewController: UIViewController {
     }
     
     //MARK: Updates
+    
+    /// Updates the in-app purchase label to reflect the product that was fetched.
     private func update(with product: IAPProduct) {
         self.product = product
         productInfoLabel.text = "\(product.name): $\(product.price)"
     }
     
+    /// This transition function takes a view controller state and mutates the view controller with the appropriate values for each element in the view.
     fileprivate func transition(to state: RemoveAdsViewControllerState, animated: Bool = true) {
         
         //TODO: Move this into the IAPController instead
@@ -200,14 +204,17 @@ internal final class RemoveAdsViewController: UIViewController {
         
         bottomMessageLabel.text = state.bottomMessageLabelText
         
+        /// Tell the view it needs to re-layout, and animate the layout if animated is true.
         self.view.setNeedsLayout()
         
-        UIView.animate(withDuration: animated ? 0.25 : 0) {
+        UIView.animate(withDuration: animated ? 0.2 : 0) {
             self.view.layoutIfNeeded()
         }
     }
     
     //MARK: IBActions
+    
+    /// Transitions to purchasing and requests a new purchase transaction. It transitions to the correct state of the in app purchase result.
     @IBAction private func removeAdsButtonTapped() {
         transition(to: .purchasing)
         
@@ -225,6 +232,7 @@ internal final class RemoveAdsViewController: UIViewController {
         })
     }
     
+    /// Transitions to restoring and requests a restore purchases transaction. It transitions to the correct state of the in app purchase result.
     @IBAction private func restorePurchasesButtonTapped() {
         transition(to: .restoring)
         
@@ -250,6 +258,8 @@ internal final class RemoveAdsViewController: UIViewController {
     }
     
     //MARK: Fetching
+    
+    /// Simulates the data fetch of the in-app purchasing product available for this app. It updates the view controller with the appropriate state upon completion.
     private func fetchIAPProduct() {
         transition(to: .fetching, animated: false)
         
@@ -259,30 +269,29 @@ internal final class RemoveAdsViewController: UIViewController {
         })
     }
     
-    //MARK: Alerts
+    //MARK: Alert Helper
     private func showOKAlert(for result: IAPTransactionResult) {
-        let alert = UIAlertController(title: result.title, message: result.message, preferredStyle: .alert)
+        let alert = UIAlertController(title: result.alertTitle, message: result.alertMessage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "ok".uppercased(), style: .default, handler: nil))
         self.present(alert, animated: true)
     }
 }
 
 //MARK: - RemoveAdsResult Extension
+
+/// An extension that provides the appropriate title and message for the OK Alert for each IAP result type
 fileprivate extension IAPTransactionResult {
-    fileprivate var title: String {
+    fileprivate var alertTitle: String {
         switch self {
-        case .purchaseCompleted:
-            return "purchase completed!".capitalized
-        case .restoredPurchase:
-            return "purchase restored!".capitalized
-        case .noPurchaseToRestore:
-            return "no purchase found".capitalized
+        case .purchaseCompleted: return "purchase completed!".capitalized
+        case .restoredPurchase: return "purchase restored!".capitalized
+        case .noPurchaseToRestore: return "no purchase found".capitalized
         case .purchaseFailed(let errorMsg), .restoreFailed(let errorMsg):
             return errorMsg
         }
     }
     
-    fileprivate var message: String? {
+    fileprivate var alertMessage: String? {
         switch self {
         case .purchaseCompleted, .restoredPurchase:
             return "Ads have been successfully removed! 🎉 Thank you!"
