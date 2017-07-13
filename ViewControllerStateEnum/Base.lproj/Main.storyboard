@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kOi-Tl-aI0">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="qwn-tT-dMK">
+            <objects>
+                <navigationController id="rLy-r2-AzO" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="21T-h8-t30">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.45882352939999999" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="XMT-fo-dGH" kind="relationship" relationship="rootViewController" id="lGi-Ys-ZYc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c7E-DC-6vX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="332" y="2024"/>
+        </scene>
+        <!--Ad Banner View Controller-->
+        <scene sceneID="QZv-Ll-bBE">
+            <objects>
+                <viewController id="kOi-Tl-aI0" customClass="AdBannerViewController" customModule="ViewControllerStateEnum" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qaf-K8-ocj"/>
+                        <viewControllerLayoutGuide type="bottom" id="skf-Cl-sUR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JHI-nd-V1o">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="se8-QC-mcx">
+                                <rect key="frame" x="27" y="617" width="320" height="50"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="remove-ads-banner" translatesAutoresizingMaskIntoConstraints="NO" id="iY5-Jo-HcA">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="SIx-bd-hAB"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcR-yQ-XSy" userLabel="Ad Banner Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                        <connections>
+                                            <segue destination="rLy-r2-AzO" kind="presentation" id="rDp-Qi-1Mq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="iY5-Jo-HcA" secondAttribute="bottom" priority="750" id="0kd-et-j26"/>
+                                    <constraint firstAttribute="trailing" secondItem="iY5-Jo-HcA" secondAttribute="trailing" id="LZs-KY-LW3"/>
+                                    <constraint firstItem="iY5-Jo-HcA" firstAttribute="top" secondItem="se8-QC-mcx" secondAttribute="top" id="Mhx-Lw-cuo"/>
+                                    <constraint firstAttribute="width" constant="320" id="PML-Mo-dzc"/>
+                                    <constraint firstAttribute="trailing" secondItem="xcR-yQ-XSy" secondAttribute="trailing" id="RBr-f6-tKv"/>
+                                    <constraint firstItem="iY5-Jo-HcA" firstAttribute="leading" secondItem="se8-QC-mcx" secondAttribute="leading" id="mhf-z1-04E"/>
+                                    <constraint firstItem="xcR-yQ-XSy" firstAttribute="leading" secondItem="se8-QC-mcx" secondAttribute="leading" id="pt2-AZ-eao"/>
+                                    <constraint firstItem="xcR-yQ-XSy" firstAttribute="top" secondItem="se8-QC-mcx" secondAttribute="top" id="uAV-Pp-vCQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="xcR-yQ-XSy" secondAttribute="bottom" id="xqg-We-a5S"/>
+                                    <constraint firstAttribute="height" priority="250" id="yLW-wY-leF"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="obS-PG-3Ep" userLabel="Background View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="108"/>
+                                <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="108" id="puL-aF-UXh"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BB Links" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubs-aU-nus">
+                                <rect key="frame" x="136" y="49" width="103.5" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4bv-xN-oUI" userLabel="Top Shadow Stack View">
+                                <rect key="frame" x="0.0" y="108" width="375" height="7"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KRk-Hv-AWh" userLabel="20% Shadow View">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="3"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.19902076199999999" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="3" id="zQ8-7q-Cxz"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7gL-w9-TxV" userLabel="15% Shadow View">
+                                        <rect key="frame" x="0.0" y="3" width="375" height="1"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1465539384" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="cPX-7n-hIP"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zyj-rU-mJv" userLabel="10% Shadow View">
+                                        <rect key="frame" x="0.0" y="4" width="375" height="1"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.101551798" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="Xec-a3-x7J"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qcp-64-qsa" userLabel="5% Shadow View">
+                                        <rect key="frame" x="0.0" y="5" width="375" height="2"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.046222174669999998" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="Ztl-Cb-KtA"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pX3-eq-Jcd">
+                                <rect key="frame" x="36" y="337" width="303" height="33"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Reset In-App Purchase"/>
+                                <connections>
+                                    <action selector="resetIAPButtonTapped" destination="kOi-Tl-aI0" eventType="touchUpInside" id="Fzb-ed-Ph5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99215686274509807" green="0.99215686274509807" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="4bv-xN-oUI" firstAttribute="top" secondItem="obS-PG-3Ep" secondAttribute="bottom" id="Bw2-Dv-3gg"/>
+                            <constraint firstItem="ubs-aU-nus" firstAttribute="centerX" secondItem="JHI-nd-V1o" secondAttribute="centerX" id="EKS-22-y0k"/>
+                            <constraint firstItem="se8-QC-mcx" firstAttribute="centerX" secondItem="JHI-nd-V1o" secondAttribute="centerX" id="Kwc-OZ-hp8"/>
+                            <constraint firstItem="4bv-xN-oUI" firstAttribute="top" secondItem="ubs-aU-nus" secondAttribute="bottom" constant="30" id="NSr-2Q-AuJ"/>
+                            <constraint firstItem="obS-PG-3Ep" firstAttribute="top" secondItem="JHI-nd-V1o" secondAttribute="top" id="W7W-gW-a2h"/>
+                            <constraint firstItem="skf-Cl-sUR" firstAttribute="top" secondItem="se8-QC-mcx" secondAttribute="bottom" id="WBR-0i-CBk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pX3-eq-Jcd" secondAttribute="trailing" constant="20" id="XuF-Hi-qMm"/>
+                            <constraint firstAttribute="trailing" secondItem="4bv-xN-oUI" secondAttribute="trailing" id="Yck-EO-nRT"/>
+                            <constraint firstItem="4bv-xN-oUI" firstAttribute="top" secondItem="ubs-aU-nus" secondAttribute="bottom" constant="30" id="fdd-Ka-egC"/>
+                            <constraint firstAttribute="trailing" secondItem="obS-PG-3Ep" secondAttribute="trailing" id="hJj-fj-NuT"/>
+                            <constraint firstItem="4bv-xN-oUI" firstAttribute="leading" secondItem="JHI-nd-V1o" secondAttribute="leading" id="nsT-Uv-bgC"/>
+                            <constraint firstItem="pX3-eq-Jcd" firstAttribute="centerY" secondItem="JHI-nd-V1o" secondAttribute="centerY" constant="20" id="s6j-tA-7jU"/>
+                            <constraint firstItem="obS-PG-3Ep" firstAttribute="leading" secondItem="JHI-nd-V1o" secondAttribute="leading" id="tvK-lo-fRG"/>
+                            <constraint firstItem="pX3-eq-Jcd" firstAttribute="leading" secondItem="JHI-nd-V1o" secondAttribute="leadingMargin" constant="20" id="zkw-3E-5ni"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="adBannerContainer" destination="se8-QC-mcx" id="WBW-Sc-Rot"/>
+                        <outlet property="zeroHeightBannerContainerConstraint" destination="yLW-wY-leF" id="4eS-Fl-9aa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pqc-JI-IXC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-505" y="2024"/>
+        </scene>
+        <!--Remove Ads-->
+        <scene sceneID="HQD-n3-I0X">
+            <objects>
+                <viewController storyboardIdentifier="RemoveAdsVC" title="Remove Ads" automaticallyAdjustsScrollViewInsets="NO" id="XMT-fo-dGH" customClass="RemoveAdsViewController" customModule="ViewControllerStateEnum" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sdE-er-Hgn"/>
+                        <viewControllerLayoutGuide type="bottom" id="NYK-MY-TAu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fdr-HU-ecQ">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YyI-3r-gza">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lek-Op-C0e" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="442"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8J-LW-Jix">
+                                                <rect key="frame" x="12" y="15" width="351" height="48"/>
+                                                <string key="text">Remove Ads via
+In-App Purchase</string>
+                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMQ-mM-G8l">
+                                                <rect key="frame" x="12" y="78" width="351" height="50.5"/>
+                                                <string key="text">As an independent developer and coach, ads help pay for development, data maintenance, and hosting costs.
+
+If you would rather not see any ads, use this one-time In-App Purchase to remove them permanently!</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbV-dK-QIK">
+                                                <rect key="frame" x="12" y="128.5" width="351" height="138"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remove Ads: $3.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lqo-Y4-tKR">
+                                                        <rect key="frame" x="93.5" y="20" width="164.5" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PN6-sp-7TV">
+                                                        <rect key="frame" x="131.5" y="61" width="88" height="31"/>
+                                                        <color key="backgroundColor" red="0.46623939279999999" green="0.76914864780000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <inset key="contentEdgeInsets" minX="8" minY="5" maxX="8" maxY="5"/>
+                                                        <state key="normal" title="Purchase">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="removeAdsButtonTapped" destination="XMT-fo-dGH" eventType="touchUpInside" id="eQn-4d-2KY"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAd-t5-nF8">
+                                                        <rect key="frame" x="95.5" y="107" width="160" height="31"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <inset key="contentEdgeInsets" minX="8" minY="5" maxX="8" maxY="5"/>
+                                                        <state key="normal" title="Restore Purchases">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="restorePurchasesButtonTapped" destination="XMT-fo-dGH" eventType="touchUpInside" id="Ics-Nr-ADY"/>
+                                                        </connections>
+                                                    </button>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5DK-yK-ATq">
+                                                        <rect key="frame" x="165.5" y="21" width="20" height="20"/>
+                                                    </activityIndicatorView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="CAd-t5-nF8" firstAttribute="top" secondItem="PN6-sp-7TV" secondAttribute="bottom" constant="15" id="2FK-WT-NJS"/>
+                                                    <constraint firstItem="PN6-sp-7TV" firstAttribute="top" secondItem="Lqo-Y4-tKR" secondAttribute="bottom" constant="20" id="4eR-6h-UU2"/>
+                                                    <constraint firstItem="Lqo-Y4-tKR" firstAttribute="top" secondItem="BbV-dK-QIK" secondAttribute="top" priority="999" constant="20" id="70y-0E-ReZ"/>
+                                                    <constraint firstItem="CAd-t5-nF8" firstAttribute="centerX" secondItem="BbV-dK-QIK" secondAttribute="centerX" id="FV9-sw-FUL"/>
+                                                    <constraint firstAttribute="height" constant="138" id="MES-4J-0I2"/>
+                                                    <constraint firstItem="PN6-sp-7TV" firstAttribute="centerX" secondItem="BbV-dK-QIK" secondAttribute="centerX" id="X03-bg-PXE"/>
+                                                    <constraint firstItem="5DK-yK-ATq" firstAttribute="centerY" secondItem="Lqo-Y4-tKR" secondAttribute="centerY" id="pKu-bw-qcj"/>
+                                                    <constraint firstItem="5DK-yK-ATq" firstAttribute="centerX" secondItem="Lqo-Y4-tKR" secondAttribute="centerX" id="r0t-xW-MXd"/>
+                                                    <constraint firstAttribute="bottom" secondItem="CAd-t5-nF8" secondAttribute="bottom" id="rQZ-pn-yEq"/>
+                                                    <constraint firstItem="Lqo-Y4-tKR" firstAttribute="centerX" secondItem="BbV-dK-QIK" secondAttribute="centerX" id="wB3-VD-4kl"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already Purchased? Use the button above to remove ads again after reinstalling the app, or installing on a new device." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ld5-V0-jH8">
+                                                <rect key="frame" x="12" y="286.5" width="351" height="13.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="geek-heart-coffee" translatesAutoresizingMaskIntoConstraints="NO" id="Ha6-6F-Ald">
+                                                <rect key="frame" x="42.5" y="320" width="290" height="102"/>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Ha6-6F-Ald" secondAttribute="bottom" constant="20" id="06G-V7-qTB"/>
+                                            <constraint firstItem="H8J-LW-Jix" firstAttribute="leading" secondItem="lek-Op-C0e" secondAttribute="leading" constant="12" id="0an-tN-aAL"/>
+                                            <constraint firstItem="VMQ-mM-G8l" firstAttribute="top" secondItem="H8J-LW-Jix" secondAttribute="bottom" constant="15" id="AK9-QJ-Kvt"/>
+                                            <constraint firstItem="Ld5-V0-jH8" firstAttribute="trailing" secondItem="H8J-LW-Jix" secondAttribute="trailing" id="Kf2-33-BEv"/>
+                                            <constraint firstAttribute="trailing" secondItem="H8J-LW-Jix" secondAttribute="trailing" constant="12" id="LTx-sF-zfK"/>
+                                            <constraint firstItem="BbV-dK-QIK" firstAttribute="top" secondItem="VMQ-mM-G8l" secondAttribute="bottom" id="Pjs-2Y-IFU"/>
+                                            <constraint firstItem="Ld5-V0-jH8" firstAttribute="leading" secondItem="H8J-LW-Jix" secondAttribute="leading" id="QbC-BW-Id9"/>
+                                            <constraint firstItem="Ha6-6F-Ald" firstAttribute="top" secondItem="Ld5-V0-jH8" secondAttribute="bottom" constant="20" id="Qji-fa-ZPr"/>
+                                            <constraint firstItem="VMQ-mM-G8l" firstAttribute="trailing" secondItem="H8J-LW-Jix" secondAttribute="trailing" id="RFv-ml-rPG"/>
+                                            <constraint firstItem="Ha6-6F-Ald" firstAttribute="centerX" secondItem="lek-Op-C0e" secondAttribute="centerX" id="T2I-Yb-qyo"/>
+                                            <constraint firstItem="VMQ-mM-G8l" firstAttribute="leading" secondItem="H8J-LW-Jix" secondAttribute="leading" id="XXq-HR-tOh"/>
+                                            <constraint firstItem="BbV-dK-QIK" firstAttribute="leading" secondItem="H8J-LW-Jix" secondAttribute="leading" id="btD-1r-N55"/>
+                                            <constraint firstItem="H8J-LW-Jix" firstAttribute="top" secondItem="lek-Op-C0e" secondAttribute="top" constant="15" id="ir6-ep-hgO"/>
+                                            <constraint firstItem="Ld5-V0-jH8" firstAttribute="top" secondItem="BbV-dK-QIK" secondAttribute="bottom" constant="20" id="q1A-1r-fuU"/>
+                                            <constraint firstItem="BbV-dK-QIK" firstAttribute="trailing" secondItem="H8J-LW-Jix" secondAttribute="trailing" id="slW-bF-Fxs"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="lek-Op-C0e" firstAttribute="leading" secondItem="YyI-3r-gza" secondAttribute="leading" id="Ka8-Qn-ogj"/>
+                                    <constraint firstAttribute="bottom" secondItem="lek-Op-C0e" secondAttribute="bottom" id="hYe-L8-uch"/>
+                                    <constraint firstAttribute="trailing" secondItem="lek-Op-C0e" secondAttribute="trailing" id="pRy-dL-bmN"/>
+                                    <constraint firstItem="lek-Op-C0e" firstAttribute="top" secondItem="YyI-3r-gza" secondAttribute="top" id="xlm-QG-IYD"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="NYK-MY-TAu" firstAttribute="top" secondItem="YyI-3r-gza" secondAttribute="bottom" id="0wM-wj-uS3"/>
+                            <constraint firstItem="YyI-3r-gza" firstAttribute="leading" secondItem="fdr-HU-ecQ" secondAttribute="leading" id="5Wt-9V-yqK"/>
+                            <constraint firstAttribute="trailing" secondItem="YyI-3r-gza" secondAttribute="trailing" id="8hO-dp-ZDX"/>
+                            <constraint firstItem="lek-Op-C0e" firstAttribute="width" secondItem="fdr-HU-ecQ" secondAttribute="width" id="P4B-oz-gZ7"/>
+                            <constraint firstItem="YyI-3r-gza" firstAttribute="top" secondItem="sdE-er-Hgn" secondAttribute="bottom" id="hi6-8o-KpX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Remove Ads" id="8cX-pS-tf3">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="Etj-go-U57">
+                            <color key="tintColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="doneButtonTapped" destination="XMT-fo-dGH" id="Qid-wK-1oc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bottomMessageLabel" destination="Ld5-V0-jH8" id="mUt-YE-C4j"/>
+                        <outlet property="loadingIndicator" destination="5DK-yK-ATq" id="11A-oS-Wt8"/>
+                        <outlet property="messageLabel" destination="VMQ-mM-G8l" id="JA0-RU-3CS"/>
+                        <outlet property="productInfoLabel" destination="Lqo-Y4-tKR" id="PLT-X6-veI"/>
+                        <outlet property="purchaseAreaView" destination="BbV-dK-QIK" id="hg3-nS-Vmv"/>
+                        <outlet property="purchaseAreaViewHeightConstraint" destination="MES-4J-0I2" id="8gT-yl-3ix"/>
+                        <outlet property="removeAdsButton" destination="PN6-sp-7TV" id="4LQ-0A-2c0"/>
+                        <outlet property="restorePurchasesButton" destination="CAd-t5-nF8" id="OfI-xp-Uz1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ERq-vl-bf8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1161" y="2024"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="geek-heart-coffee" width="290" height="102"/>
+        <image name="remove-ads-banner" width="320" height="50"/>
+    </resources>
+</document>
