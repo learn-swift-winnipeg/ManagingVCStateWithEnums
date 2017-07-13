@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//MARK: - AdBannerViewControllerState
 fileprivate enum AdBannerViewControllerState {
     case bannerShowing
     case bannerHidden
@@ -35,6 +36,7 @@ fileprivate enum AdBannerViewControllerState {
     }
 }
 
+//MARK: - AdBannerViewController
 internal final class AdBannerViewController: UIViewController {
     @IBOutlet private weak var adBannerContainer: UIView!
     @IBOutlet private weak var zeroHeightBannerContainerConstraint: NSLayoutConstraint!
