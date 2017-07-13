@@ -295,6 +295,11 @@ If you would rather not see any ads, use this one-time In-App Purchase to remove
                                 <action selector="doneButtonTapped" destination="XMT-fo-dGH" id="Qid-wK-1oc"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Alerts" id="bdT-bV-uUW">
+                            <connections>
+                                <action selector="toggleAlertsButtonTapped" destination="XMT-fo-dGH" id="XnC-Nb-jTD"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bottomMessageLabel" destination="Ld5-V0-jH8" id="mUt-YE-C4j"/>
@@ -305,6 +310,7 @@ If you would rather not see any ads, use this one-time In-App Purchase to remove
                         <outlet property="purchaseAreaViewHeightConstraint" destination="MES-4J-0I2" id="8gT-yl-3ix"/>
                         <outlet property="removeAdsButton" destination="PN6-sp-7TV" id="4LQ-0A-2c0"/>
                         <outlet property="restorePurchasesButton" destination="CAd-t5-nF8" id="OfI-xp-Uz1"/>
+                        <outlet property="toggleAlertsButton" destination="bdT-bV-uUW" id="ab6-KH-dkG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ERq-vl-bf8" userLabel="First Responder" sceneMemberID="firstResponder"/>

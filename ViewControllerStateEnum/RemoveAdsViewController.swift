@@ -128,6 +128,33 @@ fileprivate enum RemoveAdsViewControllerState {
     }
 }
 
+//MARK: - ToggleAlertsButtonState
+/// This could have been handled with a boolean, but this shows an alternative typed way of handling the button's state.
+fileprivate enum ToggleAlertsButtonState {
+    case on, off
+    
+    fileprivate var buttonTitle: String {
+        switch self {
+        case .on: return "alerts (on)".capitalized
+        case .off: return "alerts (off)".capitalized
+        }
+    }
+    
+    fileprivate var nextStateOnTap: ToggleAlertsButtonState {
+        switch self {
+        case .on: return .off
+        case .off: return .on
+        }
+    }
+    
+    fileprivate var shouldShowAlert: Bool {
+        switch self {
+        case .on: return true
+        case .off: return false
+        }
+    }
+}
+
 //MARK: - RemoveAdsViewController
 internal final class RemoveAdsViewController: UIViewController {
     //MARK: IBOutlets
@@ -139,8 +166,11 @@ internal final class RemoveAdsViewController: UIViewController {
     @IBOutlet private weak var restorePurchasesButton: UIButton!
     @IBOutlet private weak var bottomMessageLabel: UILabel!
     @IBOutlet private weak var purchaseAreaViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var toggleAlertsButton: UIBarButtonItem!
     //MARK: Properties
     private var product: IAPProduct?
+    /// This state needs to be stored so we know what the previous state is to change it
+    private var toggleAlertsButtonState: ToggleAlertsButtonState = .on
     
     //MARK: UIViewController
     internal override func viewDidLoad() {
@@ -165,6 +195,8 @@ internal final class RemoveAdsViewController: UIViewController {
         [removeAdsButton, restorePurchasesButton].forEach {
             $0!.addCornersAndShadow(cornerType: .slightlyRounded(radius: CornerType.defaultRadius))
         }
+        
+        toggleAlertsButton.title = toggleAlertsButtonState.buttonTitle
     }
     
     //MARK: Updates
@@ -224,10 +256,10 @@ internal final class RemoveAdsViewController: UIViewController {
                 break
             case .purchaseCompleted:
                 self?.transition(to: .purchased)
-                self?.showOKAlert(for: result)
+                self?.showOKAlertIfNeeded(for: result)
             case .purchaseFailed(_):
                 self?.transition(to: .notPurchased)
-                self?.showOKAlert(for: result)
+                self?.showOKAlertIfNeeded(for: result)
             }
         })
     }
@@ -242,19 +274,24 @@ internal final class RemoveAdsViewController: UIViewController {
                 break
             case .noPurchaseToRestore:
                 self?.transition(to: .notPurchased)
-                self?.showOKAlert(for: result)
+                self?.showOKAlertIfNeeded(for: result)
             case .restoredPurchase:
                 self?.transition(to: .restored)
-                self?.showOKAlert(for: result)
+                self?.showOKAlertIfNeeded(for: result)
             case .restoreFailed(_):
                 self?.transition(to: .notPurchased)
-                self?.showOKAlert(for: result)
+                self?.showOKAlertIfNeeded(for: result)
             }
         })
     }
     
     @IBAction private func doneButtonTapped() {
         self.dismiss(animated: true)
+    }
+    
+    @IBAction private func toggleAlertsButtonTapped() {
+        toggleAlertsButtonState = toggleAlertsButtonState.nextStateOnTap
+        toggleAlertsButton.title = toggleAlertsButtonState.buttonTitle
     }
     
     //MARK: Fetching
@@ -270,7 +307,10 @@ internal final class RemoveAdsViewController: UIViewController {
     }
     
     //MARK: Alert Helper
-    private func showOKAlert(for result: IAPTransactionResult) {
+    private func showOKAlertIfNeeded(for result: IAPTransactionResult) {
+        /// Make sure the user wants to see alerts, otherwise don't show one
+        guard toggleAlertsButtonState.shouldShowAlert else { return }
+        
         let alert = UIAlertController(title: result.alertTitle, message: result.alertMessage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "ok".uppercased(), style: .default, handler: nil))
         self.present(alert, animated: true)
