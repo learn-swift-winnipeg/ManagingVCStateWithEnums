@@ -14,6 +14,7 @@ fileprivate enum AdBannerViewControllerState {
     case bannerShowing
     case bannerHidden
     
+    /// Initialize this VC's state using the IAP's remove ads state
     fileprivate init(removeAdsState: IAPRemoveAdsState) {
         switch removeAdsState {
         case .notPurchased, .unknown: self = .bannerShowing
@@ -28,7 +29,14 @@ fileprivate enum AdBannerViewControllerState {
         }
     }
     
-    fileprivate var animated: Bool {
+    fileprivate var changeIsAnimated: Bool {
+        switch self {
+        case .bannerShowing: return true
+        case .bannerHidden: return false
+        }
+    }
+    
+    fileprivate var hideResetButton: Bool {
         switch self {
         case .bannerShowing: return true
         case .bannerHidden: return false
@@ -39,6 +47,7 @@ fileprivate enum AdBannerViewControllerState {
 //MARK: - AdBannerViewController
 internal final class AdBannerViewController: UIViewController {
     @IBOutlet private weak var adBannerContainer: UIView!
+    @IBOutlet private weak var resetIAPButton: UIButton!
     @IBOutlet private weak var zeroHeightBannerContainerConstraint: NSLayoutConstraint!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,7 +58,8 @@ internal final class AdBannerViewController: UIViewController {
     }
     
     private func transition(to state: AdBannerViewControllerState) {
-        UIView.animate(withDuration: state.animated ? 0.25 : 0) {
+        UIView.animate(withDuration: state.changeIsAnimated ? 0.25 : 0) {
+            self.resetIAPButton.isHidden = state.hideResetButton
             self.zeroHeightBannerContainerConstraint.priority = state.zeroHeightBannerContainerConstraintPriority
             self.adBannerContainer.layoutIfNeeded()
         }

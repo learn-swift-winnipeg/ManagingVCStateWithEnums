@@ -150,6 +150,7 @@
                     </view>
                     <connections>
                         <outlet property="adBannerContainer" destination="se8-QC-mcx" id="WBW-Sc-Rot"/>
+                        <outlet property="resetIAPButton" destination="pX3-eq-Jcd" id="gRd-x3-Ozz"/>
                         <outlet property="zeroHeightBannerContainerConstraint" destination="yLW-wY-leF" id="4eS-Fl-9aa"/>
                     </connections>
                 </viewController>

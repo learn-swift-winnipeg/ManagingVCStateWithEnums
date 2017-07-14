@@ -16,7 +16,6 @@ internal enum IAPTransactionType {
     case restorePurchases
 }
 
-
 //MARK: - IAPTransactionResult
 internal enum IAPTransactionResult {
     case purchaseCompleted
@@ -32,13 +31,9 @@ internal enum IAPRemoveAdsState {
     case purchased // The in-app purchase has been purchased or restored
     case unknown // Initial unknown purchase state
     
+    fileprivate static let userDefaultsKey = "removeAdsIsPurchased"
+    
     internal var isPurchased: Bool {
-        switch self {
-        case .purchased: return true
-        case .notPurchased, .unknown: return false
-        }
-    }
-    internal var hideAdBanner: Bool {
         switch self {
         case .purchased: return true
         case .notPurchased, .unknown: return false
@@ -58,7 +53,12 @@ internal class IAPController {
     internal private(set) var removeAdsState: IAPRemoveAdsState = .unknown
     
     private init() {
-        /// Load the state from user defaults and set it.
+        /// Load the state from user defaults and set the local state to purchased if needed.
+        let isPurchased = UserDefaults.standard.bool(forKey: IAPRemoveAdsState.userDefaultsKey)
+        
+        if isPurchased {
+            removeAdsState = .purchased
+        }
     }
     
     //MARK: Updates
@@ -66,7 +66,7 @@ internal class IAPController {
         removeAdsState = state
         
         /// Save state to user defaults to check at app launch.
-        /// Hide Ad Banner throughout app if state is `.purchased`.
+        UserDefaults.standard.set(state.isPurchased, forKey: IAPRemoveAdsState.userDefaultsKey)
     }
     
     //MARK: Transaction Requests
