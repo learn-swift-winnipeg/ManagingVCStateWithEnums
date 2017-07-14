@@ -21,7 +21,7 @@
 /* Begin PBXFileReference section */
 		D00B65D01F15B88B00A8606F /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		D02DA3FA1F15AB6500E7BCD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D0786D0F1F12FC2A0075BD4F /* ViewControllerStateEnum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ViewControllerStateEnum.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0786D0F1F12FC2A0075BD4F /* VC State.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VC State.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0786D121F12FC2A0075BD4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0786D141F12FC2A0075BD4F /* RemoveAdsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAdsViewController.swift; sourceTree = "<group>"; };
 		D0786D191F12FC2A0075BD4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 		D0786D101F12FC2A0075BD4F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D0786D0F1F12FC2A0075BD4F /* ViewControllerStateEnum.app */,
+				D0786D0F1F12FC2A0075BD4F /* VC State.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,7 +109,7 @@
 			);
 			name = ViewControllerStateEnum;
 			productName = ViewControllerStateEnum;
-			productReference = D0786D0F1F12FC2A0075BD4F /* ViewControllerStateEnum.app */;
+			productReference = D0786D0F1F12FC2A0075BD4F /* VC State.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -299,7 +299,7 @@
 				INFOPLIST_FILE = ViewControllerStateEnum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.justinstanley.ViewControllerStateEnum;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "VC State";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -312,7 +312,7 @@
 				INFOPLIST_FILE = ViewControllerStateEnum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.justinstanley.ViewControllerStateEnum;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "VC State";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
