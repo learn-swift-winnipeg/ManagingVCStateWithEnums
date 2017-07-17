@@ -34,10 +34,10 @@ internal enum IAPTransactionType {
 //MARK: - IAPTransactionResult
 internal enum IAPTransactionResult {
     case purchaseCompleted
-    case purchaseFailed(errorMsg: String) // Ideally would store the IAP' Error instead
+    case purchaseFailed(errorMsg: String) // Ideally would store the actual IAP's Error instead
     case restoredPurchase
     case noPurchaseToRestore
-    case restoreFailed(errorMsg: String) // Ideally would store the IAP's Error instead
+    case restoreFailed(errorMsg: String) // Ideally would store the actual IAP's Error instead
 }
 
 //MARK: - IAPRemoveAdsState
