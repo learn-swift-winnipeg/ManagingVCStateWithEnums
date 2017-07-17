@@ -18,6 +18,18 @@ fileprivate enum RemoveAdsViewControllerState {
     case restoring // Restore purchases is in progress
     case restored // A previous purchase has been restored successfully
     
+    /// Convenient way to move the logic for determining the state based on the IAP Transaction Result from the VC to the State
+    fileprivate init(iapTransactionResult: IAPTransactionResult) {
+        switch iapTransactionResult {
+        case .purchaseCompleted:
+            self = .purchased
+        case .restoredPurchase:
+            self = .restored
+        case .purchaseFailed(_), .noPurchaseToRestore, .restoreFailed(_):
+            self = .notPurchased
+        }
+    }
+    
     fileprivate var purchaseButtonTitle: String {
         switch self {
         case .purchased: return "purchased!".capitalized
@@ -256,16 +268,7 @@ internal final class RemoveAdsViewController: UIViewController {
         transitionViewController(to: .purchasing)
         
         IAPController.shared.requestTransaction(.newPurchase, onCompletion: { [weak self] result in
-            switch result {
-            case .noPurchaseToRestore, .restoredPurchase, .restoreFailed(_):
-                break
-            case .purchaseCompleted:
-                self?.transitionViewController(to: .purchased)
-                self?.showOKAlertIfNeeded(for: result)
-            case .purchaseFailed(_):
-                self?.transitionViewController(to: .notPurchased)
-                self?.showOKAlertIfNeeded(for: result)
-            }
+            self?.handleTransactionResult(result)
         })
     }
     
@@ -274,19 +277,7 @@ internal final class RemoveAdsViewController: UIViewController {
         transitionViewController(to: .restoring)
         
         IAPController.shared.requestTransaction(.restorePurchases, onCompletion: { [weak self] result in
-            switch result {
-            case .purchaseCompleted, .purchaseFailed(_):
-                break
-            case .noPurchaseToRestore:
-                self?.transitionViewController(to: .notPurchased)
-                self?.showOKAlertIfNeeded(for: result)
-            case .restoredPurchase:
-                self?.transitionViewController(to: .restored)
-                self?.showOKAlertIfNeeded(for: result)
-            case .restoreFailed(_):
-                self?.transitionViewController(to: .notPurchased)
-                self?.showOKAlertIfNeeded(for: result)
-            }
+            self?.handleTransactionResult(result)
         })
     }
     
@@ -315,6 +306,13 @@ internal final class RemoveAdsViewController: UIViewController {
     }
     
     //MARK: Alert Helper
+    private func handleTransactionResult(_ result: IAPTransactionResult) {
+        /// Use the initializer to determine the new state
+        let newVCState = RemoveAdsViewControllerState(iapTransactionResult: result)
+        transitionViewController(to: newVCState)
+        showOKAlertIfNeeded(for: result)
+    }
+    
     private func showOKAlertIfNeeded(for result: IAPTransactionResult) {
         /// Make sure the user wants to see alerts, otherwise don't show one
         guard toggleAlertsButtonState.shouldShowAlert else { return }
