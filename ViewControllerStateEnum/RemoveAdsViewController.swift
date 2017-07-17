@@ -207,13 +207,6 @@ internal final class RemoveAdsViewController: UIViewController {
     
     /// This transition function takes a view controller state and mutates the view controller with the appropriate values for each element in the view.
     fileprivate func transition(to state: RemoveAdsViewControllerState, animated: Bool = true) {
-        
-        //TODO: Move this into the IAPController instead
-        switch state {
-        case .purchased, .restored: IAPController.shared.transition(to: .purchased)
-        case .fetching, .notPurchased, .restoring, .purchasing: break
-        }
-        
         removeAdsButton.setTitle(state.purchaseButtonTitle, for: .normal)
         removeAdsButton.isEnabled = state.purchaseButtonIsEnabled
         removeAdsButton.alpha = state.purchaseButtonAlpha

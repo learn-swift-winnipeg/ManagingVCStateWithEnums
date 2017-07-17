@@ -14,6 +14,21 @@ import Foundation
 internal enum IAPTransactionType {
     case newPurchase
     case restorePurchases
+    
+    // Returns a random transaction result for demo purposes
+    fileprivate var randomTransactionResult: IAPTransactionResult {
+        let possibleResults: [IAPTransactionResult]
+        switch self {
+        case .newPurchase:
+            possibleResults = [.purchaseCompleted,
+                               .purchaseFailed(errorMsg: "Error Code 2253: Item is currently not purchasable.")]
+        case .restorePurchases:
+            possibleResults = [.restoredPurchase,
+                               .noPurchaseToRestore,
+                               .restoreFailed(errorMsg: "Error Code 1456: Could Not Authorize User.")]
+        }
+        return possibleResults.randomElement!
+    }
 }
 
 //MARK: - IAPTransactionResult
@@ -78,33 +93,20 @@ internal class IAPController {
         }
     }
     
-    /// Similates requesting a transaction from Apple, and returns the transaction result
+    /// Similates requesting a transaction from Apple, setting the state in this controller based on the result, and returning the transaction result
     internal func requestTransaction(_ type: IAPTransactionType, onCompletion: @escaping (IAPTransactionResult) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            switch type {
-            case .newPurchase:
-                onCompletion(self.randomNewPurchaseTransactionResult())
-            case .restorePurchases:
-                onCompletion(self.randomRestorePurchasesTransactionResult())
+            let result = type.randomTransactionResult
+            
+            switch result {
+            case .purchaseCompleted, .restoredPurchase:
+                self.transition(to: .purchased)
+            case .noPurchaseToRestore, .purchaseFailed(_), .restoreFailed(_):
+                self.transition(to: .notPurchased)
             }
+            
+            onCompletion(result)
         }
-    }
-    
-    //MARK: Helpers
-    
-    /// Returns one of the 2 random purchase transaction results
-    private func randomNewPurchaseTransactionResult() -> IAPTransactionResult {
-        return [IAPTransactionResult.purchaseCompleted,
-                .purchaseFailed(errorMsg: "Error Code 2253: Item is currently not purchasable.")]
-            .randomElement!
-    }
-    
-    /// Returns one of the 3 random restore purchase transaction results
-    private func randomRestorePurchasesTransactionResult() -> IAPTransactionResult {
-        return [IAPTransactionResult.restoredPurchase,
-                .noPurchaseToRestore,
-                .restoreFailed(errorMsg: "Error Code 1456: Could Not Authorize User.")]
-            .randomElement!
     }
 }
 
@@ -116,6 +118,8 @@ internal struct IAPProduct {
     let name: String
     let price: Double
 }
+
+
 
 
 
