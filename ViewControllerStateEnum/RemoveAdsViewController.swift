@@ -133,6 +133,12 @@ fileprivate enum RemoveAdsViewControllerState {
 fileprivate enum ToggleAlertsButtonState {
     case on, off
     
+    fileprivate static let userDefaultsKey = "showAlerts"
+    
+    fileprivate init(showAlerts: Bool) {
+        self = showAlerts ? .on : .off
+    }
+    
     fileprivate var buttonTitle: String {
         switch self {
         case .on: return "alerts (on)".capitalized
@@ -183,7 +189,7 @@ internal final class RemoveAdsViewController: UIViewController {
         
         /// If the in-app purchase was previously purchased, immediately transition to the purchased state, otherwise fetch the in-app purchase product data.
         if IAPController.shared.removeAdsState.isPurchased {
-            transition(to: .purchased, animated: false)
+            transitionViewController(to: .purchased, animated: false)
         } else {
             fetchIAPProduct()
         }
@@ -195,10 +201,12 @@ internal final class RemoveAdsViewController: UIViewController {
             $0!.addCornersAndShadow(cornerType: .slightlyRounded(radius: CornerType.defaultRadius))
         }
         
-        toggleAlertsButton.title = toggleAlertsButtonState.buttonTitle
+        /// Get the saved setting for alerts and transition button's state
+        let showAlerts = UserDefaults.standard.bool(forKey: ToggleAlertsButtonState.userDefaultsKey)
+        transitionShowAlertsButton(to: ToggleAlertsButtonState(showAlerts: showAlerts))
     }
     
-    //MARK: Updates
+    //MARK: Updates/Transitions
     
     /// Updates the in-app purchase label to reflect the product that was fetched.
     private func update(with product: IAPProduct) {
@@ -206,7 +214,7 @@ internal final class RemoveAdsViewController: UIViewController {
     }
     
     /// This transition function takes a view controller state and mutates the view controller with the appropriate values for each element in the view.
-    fileprivate func transition(to state: RemoveAdsViewControllerState, animated: Bool = true) {
+    fileprivate func transitionViewController(to state: RemoveAdsViewControllerState, animated: Bool = true) {
         removeAdsButton.setTitle(state.purchaseButtonTitle, for: .normal)
         removeAdsButton.isEnabled = state.purchaseButtonIsEnabled
         removeAdsButton.alpha = state.purchaseButtonAlpha
@@ -235,21 +243,27 @@ internal final class RemoveAdsViewController: UIViewController {
         }
     }
     
+    /// Transition method for the show alerts button state
+    fileprivate func transitionShowAlertsButton(to state: ToggleAlertsButtonState) {
+        toggleAlertsButtonState = state
+        toggleAlertsButton.title = state.buttonTitle
+    }
+    
     //MARK: IBActions
     
     /// Transitions to purchasing and requests a new purchase transaction. It transitions to the correct state of the in app purchase result.
     @IBAction private func removeAdsButtonTapped() {
-        transition(to: .purchasing)
+        transitionViewController(to: .purchasing)
         
         IAPController.shared.requestTransaction(.newPurchase, onCompletion: { [weak self] result in
             switch result {
             case .noPurchaseToRestore, .restoredPurchase, .restoreFailed(_):
                 break
             case .purchaseCompleted:
-                self?.transition(to: .purchased)
+                self?.transitionViewController(to: .purchased)
                 self?.showOKAlertIfNeeded(for: result)
             case .purchaseFailed(_):
-                self?.transition(to: .notPurchased)
+                self?.transitionViewController(to: .notPurchased)
                 self?.showOKAlertIfNeeded(for: result)
             }
         })
@@ -257,20 +271,20 @@ internal final class RemoveAdsViewController: UIViewController {
     
     /// Transitions to restoring and requests a restore purchases transaction. It transitions to the correct state of the in app purchase result.
     @IBAction private func restorePurchasesButtonTapped() {
-        transition(to: .restoring)
+        transitionViewController(to: .restoring)
         
         IAPController.shared.requestTransaction(.restorePurchases, onCompletion: { [weak self] result in
             switch result {
             case .purchaseCompleted, .purchaseFailed(_):
                 break
             case .noPurchaseToRestore:
-                self?.transition(to: .notPurchased)
+                self?.transitionViewController(to: .notPurchased)
                 self?.showOKAlertIfNeeded(for: result)
             case .restoredPurchase:
-                self?.transition(to: .restored)
+                self?.transitionViewController(to: .restored)
                 self?.showOKAlertIfNeeded(for: result)
             case .restoreFailed(_):
-                self?.transition(to: .notPurchased)
+                self?.transitionViewController(to: .notPurchased)
                 self?.showOKAlertIfNeeded(for: result)
             }
         })
@@ -281,19 +295,22 @@ internal final class RemoveAdsViewController: UIViewController {
     }
     
     @IBAction private func toggleAlertsButtonTapped() {
-        toggleAlertsButtonState = toggleAlertsButtonState.nextStateOnTap
-        toggleAlertsButton.title = toggleAlertsButtonState.buttonTitle
+        /// Transition the button's state
+        transitionShowAlertsButton(to: toggleAlertsButtonState.nextStateOnTap)
+        
+        /// Save the user setting to user defaults
+        UserDefaults.standard.set(toggleAlertsButtonState.shouldShowAlert, forKey: ToggleAlertsButtonState.userDefaultsKey)
     }
     
     //MARK: Fetching
     
     /// Simulates the data fetch of the in-app purchasing product available for this app. It updates the view controller with the appropriate state upon completion.
     private func fetchIAPProduct() {
-        transition(to: .fetching, animated: false)
+        transitionViewController(to: .fetching, animated: false)
         
         IAPController.shared.requestIAPProduct(onCompletion: { [weak self] product in
             self?.update(with: product)
-            self?.transition(to: .notPurchased)
+            self?.transitionViewController(to: .notPurchased)
         })
     }
     
