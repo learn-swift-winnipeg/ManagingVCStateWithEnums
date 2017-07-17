@@ -168,7 +168,6 @@ internal final class RemoveAdsViewController: UIViewController {
     @IBOutlet private weak var purchaseAreaViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var toggleAlertsButton: UIBarButtonItem!
     //MARK: Properties
-    private var product: IAPProduct?
     /// This state needs to be stored so we know what the previous state is to change it
     private var toggleAlertsButtonState: ToggleAlertsButtonState = .on
     
@@ -203,7 +202,6 @@ internal final class RemoveAdsViewController: UIViewController {
     
     /// Updates the in-app purchase label to reflect the product that was fetched.
     private func update(with product: IAPProduct) {
-        self.product = product
         productInfoLabel.text = "\(product.name): $\(product.price)"
     }
     
