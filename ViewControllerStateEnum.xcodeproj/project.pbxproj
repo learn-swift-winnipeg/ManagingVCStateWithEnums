@@ -10,12 +10,12 @@
 		D00B65D11F15B88B00A8606F /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00B65D01F15B88B00A8606F /* Array.swift */; };
 		D02DA3FB1F15AB6500E7BCD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D02DA3F91F15AB6500E7BCD1 /* Main.storyboard */; };
 		D0786D131F12FC2A0075BD4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0786D121F12FC2A0075BD4F /* AppDelegate.swift */; };
-		D0786D151F12FC2A0075BD4F /* RemoveAdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0786D141F12FC2A0075BD4F /* RemoveAdsViewController.swift */; };
+		D0786D151F12FC2A0075BD4F /* 2. RemoveAdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0786D141F12FC2A0075BD4F /* 2. RemoveAdsViewController.swift */; };
 		D0786D1A1F12FC2A0075BD4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0786D191F12FC2A0075BD4F /* Assets.xcassets */; };
 		D0786D1D1F12FC2A0075BD4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0786D1B1F12FC2A0075BD4F /* LaunchScreen.storyboard */; };
 		D098368B1F14642900FDB70E /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D098368A1F14642900FDB70E /* UIButton.swift */; };
-		D098368D1F1465D800FDB70E /* IAPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D098368C1F1465D800FDB70E /* IAPController.swift */; };
-		D098368F1F147D5D00FDB70E /* AdBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D098368E1F147D5D00FDB70E /* AdBannerViewController.swift */; };
+		D098368D1F1465D800FDB70E /* 3. IAPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D098368C1F1465D800FDB70E /* 3. IAPController.swift */; };
+		D098368F1F147D5D00FDB70E /* 1. AdBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D098368E1F147D5D00FDB70E /* 1. AdBannerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,13 +23,13 @@
 		D02DA3FA1F15AB6500E7BCD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0786D0F1F12FC2A0075BD4F /* VC State.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VC State.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0786D121F12FC2A0075BD4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D0786D141F12FC2A0075BD4F /* RemoveAdsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAdsViewController.swift; sourceTree = "<group>"; };
+		D0786D141F12FC2A0075BD4F /* 2. RemoveAdsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "2. RemoveAdsViewController.swift"; sourceTree = "<group>"; };
 		D0786D191F12FC2A0075BD4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0786D1C1F12FC2A0075BD4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0786D1E1F12FC2A0075BD4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D098368A1F14642900FDB70E /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
-		D098368C1F1465D800FDB70E /* IAPController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPController.swift; sourceTree = "<group>"; };
-		D098368E1F147D5D00FDB70E /* AdBannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdBannerViewController.swift; sourceTree = "<group>"; };
+		D098368C1F1465D800FDB70E /* 3. IAPController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "3. IAPController.swift"; sourceTree = "<group>"; };
+		D098368E1F147D5D00FDB70E /* 1. AdBannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "1. AdBannerViewController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,12 +82,12 @@
 			children = (
 				D07733B51F15AACE009CE844 /* Application */,
 				D07733B61F15AAED009CE844 /* Extensions */,
-				D098368E1F147D5D00FDB70E /* AdBannerViewController.swift */,
-				D098368C1F1465D800FDB70E /* IAPController.swift */,
-				D0786D141F12FC2A0075BD4F /* RemoveAdsViewController.swift */,
 				D02DA3F91F15AB6500E7BCD1 /* Main.storyboard */,
-				D0786D1E1F12FC2A0075BD4F /* Info.plist */,
+				D098368E1F147D5D00FDB70E /* 1. AdBannerViewController.swift */,
+				D0786D141F12FC2A0075BD4F /* 2. RemoveAdsViewController.swift */,
+				D098368C1F1465D800FDB70E /* 3. IAPController.swift */,
 				D0786D191F12FC2A0075BD4F /* Assets.xcassets */,
+				D0786D1E1F12FC2A0075BD4F /* Info.plist */,
 			);
 			path = ViewControllerStateEnum;
 			sourceTree = "<group>";
@@ -165,9 +165,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D098368D1F1465D800FDB70E /* IAPController.swift in Sources */,
-				D098368F1F147D5D00FDB70E /* AdBannerViewController.swift in Sources */,
-				D0786D151F12FC2A0075BD4F /* RemoveAdsViewController.swift in Sources */,
+				D098368D1F1465D800FDB70E /* 3. IAPController.swift in Sources */,
+				D098368F1F147D5D00FDB70E /* 1. AdBannerViewController.swift in Sources */,
+				D0786D151F12FC2A0075BD4F /* 2. RemoveAdsViewController.swift in Sources */,
 				D00B65D11F15B88B00A8606F /* Array.swift in Sources */,
 				D0786D131F12FC2A0075BD4F /* AppDelegate.swift in Sources */,
 				D098368B1F14642900FDB70E /* UIButton.swift in Sources */,
